@@ -1,54 +1,80 @@
-let ingredients = {
-    tomato: 0,
-    cheese: 0,
-    beef:0
-};
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // 1. STATE: Keep track of ingredient counts
+    let ingredients = {
+        tomato: 0,
+        cheese: 0,
+        beef: 0
+    };
 
-// Update counters when + / - clicked
-document.querySelectorAll(".plus, .minus").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const item = btn.dataset.item;
+    // 2. HELPER FUNCTION: Updates the visual sandwich
+    function renderSandwich() {
+    const sandwichContainer = document.getElementById("sandwich");
+    sandwichContainer.innerHTML = ""; 
 
-        if (btn.classList.contains("plus")) {
-            ingredients[item]++;
-        } else {
-            ingredients[item] = Math.max(0, ingredients[item] - 1);
+    // 1. TOP BUN
+    let topBread = document.createElement("div");
+    topBread.className = "item-bread";
+    sandwichContainer.appendChild(topBread);
+
+    // 2. INGREDIENTS LOOP
+    for (const [key, count] of Object.entries(ingredients)) {
+        for (let i = 0; i < count; i++) {
+            let ingredientDiv = document.createElement("div");
+            ingredientDiv.className = `item-${key}`; 
+
+            // Subtle rotation only (No X or Y shifting)
+            // Rotates randomly between -3deg and 3deg
+            let randomRot = Math.random() * 6 - 3; 
+            
+            ingredientDiv.style.transform = `rotate(${randomRot}deg)`;
+
+            sandwichContainer.appendChild(ingredientDiv);
         }
-
-        document.getElementById(item + "-count").textContent = ingredients[item];
-    });
-});
-
-// Build the sandwich
-document.getElementById("make-btn").addEventListener("click", () => {
-    const sandwich = document.getElementById("sandwich");
-    sandwich.innerHTML = "";
-    sandwich.appendChild(makeLayer("item-bread"));
-
-    // Add layers (top-most added last)
-    for (let i = 0; i < ingredients.tomato; i++) {
-        let layer = document.createElement("div");
-        layer.className = "item-tomato";
-        sandwich.appendChild(layer);
     }
 
-    for (let i = 0; i < ingredients.cheese; i++) {
-        let layer = document.createElement("div");
-        layer.className = "item-cheese";
-        sandwich.appendChild(layer);
-    }
-
-    for (let i = 0; i < ingredients.beef; i++) {
-        let layer = document.createElement("div");
-        layer.className = "item-beef";
-        sandwich.appendChild(layer);
-    }
-
-    sandwich.appendChild(makeLayer("item-bread"));
-});
-function makeLayer(className) {
-    const layer = document.createElement("div");
-    layer.className = className;
-    return layer;
+    // 3. BOTTOM BUN
+    // We reuse .item-bread but the CSS :last-child rule will fix the image if needed
+    let bottomBread = document.createElement("div");
+    bottomBread.className = "bread2-color";
+    sandwichContainer.appendChild(bottomBread);
 }
 
+    // 3. EVENT LISTENERS: Plus (+)
+    const plusButtons = document.querySelectorAll(".plus");
+    plusButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const item = btn.getAttribute("data-item");
+            
+            // Increment count
+            ingredients[item]++;
+            
+            // Update text number
+            document.getElementById(`${item}-count`).innerText = ingredients[item];
+            
+            // Update visual stack immediately
+            renderSandwich();
+        });
+    });
+
+    // 4. EVENT LISTENERS: Minus (-)
+    const minusButtons = document.querySelectorAll(".minus");
+    minusButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const item = btn.getAttribute("data-item");
+
+            if (ingredients[item] > 0) {
+                ingredients[item]--;
+                
+                // Update text number
+                document.getElementById(`${item}-count`).innerText = ingredients[item];
+                
+                // Update visual stack immediately
+                renderSandwich();
+            }
+        });
+    });
+
+    // Initialize: Show the buns immediately on load (optional)
+    renderSandwich();
+});
