@@ -3,22 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>SandwichMaker</title>
+    
 </head>
 <body>
+<div class="background">
 <div class="container">
     <div class="ingredients-pannel">
         <h2>Ingredients</h2>
 
         <div class="Ingredients">
-            <span>Tomato</span>
+            <span>Tomato🍅:</span>
             <button class="minus" data-item="tomato">-</button>
             <span class="contage" id="tomato-count">0</span>
             <button class="plus" data-item="tomato">+</button>
         </div>
 
+        <div class="Ingredients">
+            <span>Cheese🧀:</span>
+            <button class="minus" data-item="cheese">-</button>
+            <span class="contage" id="cheese-count">0</span>
+            <button class="plus" data-item="cheese">+</button>
+        </div>
+
+        <div class="Ingredients">
+            <span>Beef🥩:</span>
+            <button class="minus" data-item="Beef">-</button>
+            <span class="contage" id="beef-count">0</span>
+            <button class="plus" data-item="beef">+</button>
+        </div>
+
+        <button id="make-btn">MAKE IT !</button>
+
+    </div>
+    <div class="sandwich-pannel">
+        <h2>The Sandwich</h2>
+        <div id="sandwich"></div>
     </div>
 
 </div>
+</div>
+<script src="script.js"></script>
+
 </body>
 </html>
