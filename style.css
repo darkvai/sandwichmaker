@@ -1,52 +1,117 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family:"VT323", monospace ;
+    font-size: larger;
     margin: 0;
+    height: fit-content;
     padding: 20px;
-    background-image: url("background.gif"); /* your gif */
-    background-size: cover;
-    background-position: center;
+    background-color: #1a1a1a;
+
+  
+}
+ 
+.frame {
+  display: flex;
+  background-color: #1a1a1a; 
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  border: 4px solid #4a3b2a; 
+  gap: 10px;
 }
 
-/* MAIN LAYOUT */
+
 .container {
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 98vh;
+
+    padding-left: 10px;
     gap: 30px;
     align-items: flex-start;
 }
 
-/* PANELS — now 40% / 60% */
+
+
+
 .ingredients-pannel {
-    width: 40%;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    height: 90vh;
+ 
+  background-color: #ffe4e1;
+  background-image: 
+    conic-gradient(#ff6f61 90deg, transparent 0 180deg, #ff6f61 0 270deg, transparent 0);
+  background-size: 50px 50px; 
+  width: 35%;
+ 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  font-family:"VT323", monospace ;
 }
+
+
+.ingredients-pannel-paper {
+  background: #fffaf0; 
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+  border: 1px solid #ddd;
+  text-align: center;
+  position: relative;
+}
+
+
+.ingredients-pannel-paper::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+h1 { color: #d32f2f; margin-bottom: 5px; text-transform: uppercase; }
+ul { list-style: none; padding: 0; margin-top: 30px; }
+li { display: flex; justify-content: space-between; border-bottom: 2px dotted #aaa; margin-bottom: 15px; padding-bottom: 5px; font-weight: bold; }
+
+
+
+
 
 .sandwich-pannel {
-    width: 60%;
-    background: white;
-    padding: 20px;
+    width: 65%;
+  
+    background-image: url('res/images/tavern.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    height: 90vh;
+    
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    justify-content: flex-end; 
+    align-items: center;
+    
+ 
+    padding-bottom: 50px; 
 }
 
-/* INGREDIENT ROWS */
 .Ingredients {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: 8px 0;
+    
 }
 
-/* MAKE IT button pinned bottom */
 #make-btn {
     margin-top: auto;
     padding: 15px;
@@ -55,168 +120,192 @@ body {
     cursor: pointer;
 }
 
-/* SANDWICH OUTPUT BOX */
 #sandwich {
-    margin-top: 40px; /* More space from top */
     width: 100%;
-    min-height: 400px;
+    height: auto; 
     
+    max-height: 500px;
+
+
     display: flex;
-    flex-direction: column; /* Stack top to bottom */
-    align-items: center;    /* FORCE CENTER ALIGNMENT */
-    justify-content: center; /* Center vertically in the panel */
+    flex-direction: column-reverse; 
+    
+    align-items: center;
+    justify-content: flex-start;
 }
 
-/*#sandwich div {
-    width: 220px;       
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain; 
-    
-
-}*/
 
 #sandwich .item-bread:first-child {
     z-index: 100;
-    margin-bottom: -10px; /* Push it down slightly */
+    margin-bottom: -10px; 
 }
 
 
-/* SPECIFIC HEIGHTS FOR INGREDIENTS */
-/* Adjust these based on your actual image aspect ratios */
-
 .tomato-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px;                 /* adjust based on your image */
+    width: 220px;                 
+    height: 40px;                 
     background-image: url('tomato.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
     background-position: center;
-    /*margin-top: -28px;  */
+    margin-top: -10px;
     margin-left: 4px;
     display: flex;
     flex-direction: column-reverse;  
-    padding-top: 2px;          /* spacing between slices */
+    padding-top: 2px;   
+    position: relative;
+}
+.plate-color {
+    width: 280px;                
+    height: 100px;               
+    background-image: url('side_view_plate.png');
+    background-size: contain;     
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: -28px;
+    margin-left: 13px;
+    display: flex;
+    flex-direction: column-reverse;  
+    padding-top: 2px;   
+    position: relative;
+    z-index: 1;      
 }
 
 .chiken-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px;                 /* adjust based on your image */
+    width: 220px;                 
+    height: 40px;               
     background-image: url('chiken.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
     background-position: center;
-    /*margin-top: -28px;  */
     margin-left: 4px;
     display: flex;
     flex-direction: column-reverse;  
-    padding-top: 2px;          /* spacing between slices */
+    padding-top: 2px;
+    position: relative;
+    
+
 }
 
 .onions-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px;                 /* adjust based on your image */
+    width: 220px;   
+    height: 40px;                 
     background-image: url('onions.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
-    background-position: center;
-    /*margin-top: -28px;*/  
+    background-position: center;  
     margin-left: 4px;
+    margin-bottom: -32px;
     display: flex;
     flex-direction: column-reverse;  
-    padding-top: 2px;          /* spacing between slices */
+      
+    position: relative;
+    
 }
 
 
 
 .lettuce-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px;                 /* adjust based on your image */
+    width: 220px;  
+    height: 40px;                 
     background-image: url('lettuce.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
-    background-position: center;
-    /*margin-top: -28px; */ 
+    background-position: center; 
     margin-left: 4px;
+    margin-bottom: -33px;
     display: flex;
     flex-direction: column-reverse;  
-    padding-top: 2px;          /* spacing between slices */
+    padding-top: 2px;   
+          
+    position: relative;
+    
 }
 
 
 .egg-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px;                 /* adjust based on your image */
+    width: 220px;      
+    height: 40px;                
     background-image: url('egg2.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
-    background-position: center;
-    /*margin-top: -28px; */ 
+    background-position: center; 
     margin-left: 4px;
+    margin-bottom: -30px;
     display: flex;
     flex-direction: column-reverse;  
-    padding-top: 2px;          /* spacing between slices */
+    padding-top: 2px;    
+    position: relative;
+    
 }
 
 
 
 .shrooms-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px;                 /* adjust based on your image */
+    width: 220px;              
+    height: 40px;                 
     background-image: url('shrooms.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
-    background-position: center;
-    /*margin-top: -28px;*/  
+    background-position: center;  
     margin-left: 4px;
+    margin-bottom: -30px;
     display: flex;
     flex-direction: column-reverse;  
-    padding-top: 2px;          /* spacing between slices */
+    padding-top: 2px; 
+    position: relative;
+    
 }
 
 
 
 
 .beef-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px;                 /* adjust based on your image */
+    width: 220px;                 
+    height: 40px;                
     background-image: url('beef.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
     background-position: center;
-    /*margin-top: -28px; */ 
+    
     display: flex;
-    flex-direction: column-reverse;            /* spacing between slices */
+    position: relative;
+    
+    flex-direction: column-reverse;            
 }
 
 .bread-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px;                 /* adjust based on your image */
+    width: 222px;                 
+    height: 42px;                 
     background-image: url('bread.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
     background-position: center;
-    margin-bottom: 5px;  
+    margin-bottom: 5px; 
+    margin-left: 3px; 
     margin-right: 5px;
     display: flex;
+    position: relative;
+    z-index: 999;
     flex-direction: column-reverse;  
-    position: sticky;    
-    z-index: 999;        /* spacing between slices */
+     
 }
 
 .bread2-color {
-    width: 220px;                 /* match your sandwich width */
-    height: 40px; 
-    position: sticky;                /* adjust based on your image */
+    width: 222px;                
+    height: 42px; 
+                   
     background-image: url('bread2.png');
-    background-size: contain;     /* fit image nicely */
+    background-size: contain;     
     background-repeat: no-repeat;
     background-position: center;
     margin-bottom: 25px;
-    /*margin-top: -15px;*/  
+    
     display: flex;
     flex-direction: column;
-    z-index: 0;            /* spacing between slices */
+    position: relative;
+    z-index: 2;
+             /* spacing between slices */
 }
 
 
@@ -228,24 +317,52 @@ body {
     background-size: contain;     /* fit image nicely */
     background-repeat: no-repeat;
     background-position: center;
-    /*margin-top: -28px;  */            /* spacing between slices */
+    /*margin-top: -28px;  */ 
+    margin-bottom: -30px;   
+    position: relative;
+         /* spacing between slices */
 }
 
-/*
-.item-tomato {
-    height: 45px;
-    background-image: url('tomato.png');
-    z-index: 5;
-}
 
-.item-cheese {
-    height: 35px;
-    background-image: url('cheese.png'); /* Or use background-color */
+.tomato-color, 
+.cheese-color, 
+.beef-color, 
+.lettuce-color, 
+.chiken-color, 
+.onions-color, 
+.egg-color, 
+.shrooms-color {
+    z-index: 3;
+}
 
 
 h2 {
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin-top: 50px;
+    text-align: center;
+    
+}
+
+.bread-color,.beef-color,.bread2-color,.chiken-color,.tomato-color{
+    margin-bottom: -24px;
+}
+
+.plus ,.minus {
+  background-color: #c28569; 
+  border: 4px solid #5d3a1a; 
+  color: white;
+  font-family: 'YourPixelFont', monospace;
+  box-shadow: 0 4px 0 #3e2712; 
+  cursor: pointer;
+  
+}
+
+span{
+    font-size: larger;
+}
+
+.plus ,.minus:active {
+  box-shadow: 0 0 0 #3e2712; 
+  transform: translateY(4px); 
 }
 
 

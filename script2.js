@@ -15,23 +15,30 @@ const sandwichContainer = document.getElementById("sandwich");
 function renderSandwich() {
     sandwichContainer.innerHTML = "";
 
-    let topBread = document.createElement("div");
-    topBread.className = "bread-color";
-    sandwichContainer.appendChild(topBread);
+    // 1. First, put the Plate (Visual Bottom)
+    let plate = document.createElement("div");
+    plate.className = "plate-color";
+    sandwichContainer.appendChild(plate);
 
-    for (const [key, count] of Object.entries(ingredients)) {
-            for (let i = 0; i < count; i++) {
-                let ingredientDiv = document.createElement("div");
-                ingredientDiv.setAttribute("draggable","true");
-                ingredientDiv.className = `${key}-color`;
-                sandwichContainer.appendChild(ingredientDiv);
-        }
-    };
-
+    // 2. Then, the Bottom Bread
     let bottomBread = document.createElement("div");
     bottomBread.className = "bread2-color";
     sandwichContainer.appendChild(bottomBread);
 
+    // 3. Then, loop through Ingredients
+    for (const [key, count] of Object.entries(ingredients)) {
+        for (let i = 0; i < count; i++) {
+            let ingredientDiv = document.createElement("div");
+            ingredientDiv.setAttribute("draggable", "true");
+            ingredientDiv.className = `${key}-color`;
+            sandwichContainer.appendChild(ingredientDiv);
+        }
+    }
+
+    // 4. Finally, the Top Bread (Visual Top)
+    let topBread = document.createElement("div");
+    topBread.className = "bread-color";
+    sandwichContainer.appendChild(topBread);
 }
 
 let btn = document.querySelectorAll('.plus');
