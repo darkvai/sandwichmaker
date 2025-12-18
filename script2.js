@@ -75,7 +75,3 @@ btnn.forEach(btnn =>{
     
 });
 
-let makebtn = document.getElementById("makebtn");
-makebtn.addEventListener("click" ,()=>{
-
-})

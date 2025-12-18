@@ -90,7 +90,7 @@ li { display: flex; justify-content: space-between; border-bottom: 2px dotted #a
   
     background-image: url('res/images/tavern.png'); 
     background-size: cover;
-    background-position: center;
+    background-position:    80% center;
     background-repeat: no-repeat;
     
     border-radius: 10px;
